@@ -1,19 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {NavLink } from 'react-router-dom';
-import axios from 'axios';
-import Content from '../Content/Content'
 
 class Feeling extends Component {
+
+    state = {
+        feeling: ''
+    }
+
+    handleChange = (event) => {
+        this.setState({
+            feeling: event.target.value
+        })
+        console.log("feeling:", this.state.feeling);
+    }
+
+    handleClick = () => {
+        this.props.dispatch({ type: 'ADD_FEELING', payload: this.state.feeling })
+        console.log(this.props.feedback);
+        
+    }
+
     render() {
         return (
             <div>
                 <h2>How are you feeling today?</h2>
-                <input />
-                <NavLink to="/2">Next</NavLink>
+                <input onChange={this.handleChange}/>
+                <NavLink to="/2" onClick={this.handleClick}>Next</NavLink>
             </div>
         )
     }
 }
 
-export default Feeling;
+const mapStateToProps = (state) => ({state})
+
+export default connect(mapStateToProps)(Feeling);
