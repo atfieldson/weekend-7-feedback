@@ -33,7 +33,15 @@ app.get("/feedback", (req, res) => {
         });
  });
 
-
+app.delete("/feedback", (req, res) => {
+    pool.query(`DELETE FROM "feedback"
+    WHERE "id"=$1;`, [req.body.id])
+    .then((results) => {
+        res.send(200, results);
+    }).catch((error) => {
+        res.send(500, error)
+    })
+})
 
 
 

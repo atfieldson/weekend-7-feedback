@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+import Button from "@material-ui/core/Button"
 
 
 class Feeling extends Component {
@@ -19,6 +20,14 @@ class Feeling extends Component {
         })
     }
 
+    handleClick = (row) => {
+        axios.delete('/feedback', {
+            data: row
+        }).then( 
+        this.getFeedback())
+        console.log(row);
+    }
+
     componentDidMount() {
         this.getFeedback();
     }
@@ -26,7 +35,7 @@ class Feeling extends Component {
     render() {
         return (
             <div>
-                <h2>Admin Table below</h2>
+                <h2>Student Feedback</h2>
                 <ReactTable
                         data={this.state.feedback}
                         columns={[
@@ -46,6 +55,10 @@ class Feeling extends Component {
                             {
                                 Header: "Comments",
                                 accessor: "comments"
+                            },
+                            {
+                                Header: "Delete Feedback",
+                                Cell: (row)  => (<Button onClick={() => this.handleClick(row.original)} >Delete</Button>)
                             }
 
                         ]}
