@@ -45,7 +45,7 @@ class Feeling extends Component {
                                 value={this.state.feeling}
                                 onChange={this.handleChange}
                             >
-                                <FormControlLabel value="1" control={<Radio color="primary"/>} label="Not Great" />
+                                <FormControlLabel value="1" control={<Radio color="primary"/>} label="Not great" />
                                 <FormControlLabel value="2" control={<Radio color="primary"/>} label="Could be better" />
                                 <FormControlLabel value="3" control={<Radio color="primary"/>} label="Decent" />
                                 <FormControlLabel value="4" control={<Radio color="primary"/>} label="Good" />

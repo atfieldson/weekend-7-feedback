@@ -21,6 +21,7 @@
 /* card styling */
 
 .cardContainer{
+  margin-top: 20px;
   display: flex;
   justify-content: center;
 }
@@ -36,5 +37,10 @@
 .cardRadioGroup {
   display: flex;
   /* justify-content: center; */
+}
+
+.checkMark {
+  height: 150px;
+  margin-top: 10px;
 }
 
