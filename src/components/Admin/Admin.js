@@ -27,7 +27,31 @@ class Feeling extends Component {
         return (
             <div>
                 <h2>Admin Table below</h2>
-                <p>{JSON.stringify(this.state.feedback)}</p>
+                <ReactTable
+                        data={this.state.feedback}
+                        columns={[
+                            {
+                                Header: "Feeling",
+                                accessor: "feeling"
+                            },
+                            {
+                                Header: "Understanding",
+                                accessor: "understanding"
+                            },
+
+                            {
+                                Header: "Support",
+                                accessor: "support"
+                            },
+                            {
+                                Header: "Comments",
+                                accessor: "comments"
+                            }
+
+                        ]}
+                        defaultPageSize={10}
+                        className="-striped -highlight"
+                    />
             </div>
         )
     }

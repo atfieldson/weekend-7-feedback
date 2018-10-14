@@ -17,3 +17,24 @@
   font-size: large;
 }
 
+
+/* card styling */
+
+.cardContainer{
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 275px;
+}
+
+.cardTitle{
+  font-weight: bold;
+}
+
+.cardRadioGroup {
+  display: flex;
+  /* justify-content: center; */
+}
+
