@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-import Button from "@material-ui/core/Button"
-
+//material ui
+import Button from "@material-ui/core/Button";
 
 class Feeling extends Component {
 
     state = {
         feedback: [],
+        open: false,
     }
 
     getFeedback = () => {
@@ -23,8 +24,8 @@ class Feeling extends Component {
     handleClick = (row) => {
         axios.delete('/feedback', {
             data: row
-        }).then( 
-        this.getFeedback())
+        }).then(
+            this.getFeedback())
         console.log(row);
     }
 
@@ -37,35 +38,43 @@ class Feeling extends Component {
             <div>
                 <h2>Student Feedback</h2>
                 <ReactTable
-                        data={this.state.feedback}
-                        columns={[
-                            {
-                                Header: "Feeling",
-                                accessor: "feeling"
-                            },
-                            {
-                                Header: "Understanding",
-                                accessor: "understanding"
-                            },
+                    data={this.state.feedback}
+                    columns={[
+                        {
+                            Header: "Feeling",
+                            accessor: "feeling"
+                        },
+                        {
+                            Header: "Understanding",
+                            accessor: "understanding"
+                        },
 
-                            {
-                                Header: "Support",
-                                accessor: "support"
-                            },
-                            {
-                                expander: true,
-                                Header: "Comments",
-                                width: 100,                                
-                            },
-                            {
-                                Header: "Delete Feedback",
-                                Cell: (row)  => (<Button onClick={() => this.handleClick(row.original)} >Delete</Button>)
-                            }
-                        ]}
-                        defaultPageSize={10}
-                        className="-striped -highlight"
-                        SubComponent={(row) => <div>{row.original.comments}</div>}
-                    />
+                        {
+                            Header: "Support",
+                            accessor: "support"
+                        },
+                        {
+                            Header: "Comments",
+                            accessor: "comments"
+                        },
+                        {
+                            expander: true,
+                            Header: "Exp.",
+                            width: 50,
+                        },
+                        {
+                            Header: "Delete Feedback",
+                            Cell: (row) => (<div>
+                                <Button onClick={() => this.handleClick(row.original)} >
+                                    Delete
+                                </Button>
+                            </div>)
+                        }
+                    ]}
+                    defaultPageSize={10}
+                    className="-striped -highlight"
+                    SubComponent={(row) => <div>{row.original.comments}</div>}
+                />
             </div>
         )
     }
