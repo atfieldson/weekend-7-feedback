@@ -53,17 +53,18 @@ class Feeling extends Component {
                                 accessor: "support"
                             },
                             {
+                                expander: true,
                                 Header: "Comments",
-                                accessor: "comments"
+                                width: 100,                                
                             },
                             {
                                 Header: "Delete Feedback",
                                 Cell: (row)  => (<Button onClick={() => this.handleClick(row.original)} >Delete</Button>)
                             }
-
                         ]}
                         defaultPageSize={10}
                         className="-striped -highlight"
+                        SubComponent={(row) => <div>{row.original.comments}</div>}
                     />
             </div>
         )
